@@ -75,18 +75,6 @@ export function Hero() {
             </div>
           ))}
         </div>
-
-        <div className="flex justify-center mt-12">
-          <a
-            href="#experience"
-            className="flex flex-col items-center gap-1 text-neutral-400 hover:text-cyan-400 transition-colors text-xs font-medium group"
-          >
-            <span>Explore Experience &amp; Education</span>
-            <div className="p-1.5 rounded-full bg-neutral-900 border border-neutral-800 group-hover:border-neutral-700 group-hover:translate-y-1 transition-all">
-              <ArrowDownIcon size={14} />
-            </div>
-          </a>
-        </div>
       </div>
     </section>
   );

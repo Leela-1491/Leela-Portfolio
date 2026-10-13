@@ -63,7 +63,7 @@ export const profileData: PortfolioProfile = {
 export const experienceData: ExperienceCompany[] = [
   {
     company: "Buncha Technologies India Pvt Ltd",
-    location: "Bengaluru, India",
+    location: "Remote (India)",
     totalPeriod: "Sept 2023 - Sept 2026 (3+ Years)",
     summary:
       "Rapid career progression demonstrating engineering excellence across backend architectures, vector search systems, modern web/mobile interfaces, and system reliability.",
