@@ -1,7 +1,4 @@
-import {
-  ArrowDownIcon,
-  SparklesIcon,
-} from "@/components/ui/icons";
+import { SparklesIcon } from "@/components/ui/icons";
 
 import { profileData } from "@/data/portfolio";
 

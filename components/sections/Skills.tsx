@@ -1,99 +1,153 @@
-import { CheckCircleIcon, CodeIcon, SparklesIcon } from "@/components/ui/icons";
+"use client";
 
-import { skillCategories } from "@/data/portfolio";
+import { LayersIcon, SparklesIcon } from "@/components/ui/icons";
+
+import { skillClusters } from "@/data/portfolio";
+import { useState } from "react";
 
 export function Skills() {
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({
+    frontend: true,
+    backend: true,
+    search: false,
+    cloud: false,
+  });
+
+  const toggleCluster = (id: string) => {
+    setExpanded((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
   return (
-    <section id="skills" className="py-24 px-4 sm:px-6 relative bg-neutral-950/50">
-      <div className="max-w-5xl mx-auto">
-        <div className="mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/40 text-indigo-300 border border-indigo-800/40 text-xs font-semibold uppercase tracking-wider mb-3">
-            <CodeIcon size={14} />
-            <span>Technical Proficiencies</span>
+    <section id="skills" className="py-24 px-4 sm:px-6 relative bg-neutral-950/80 overflow-hidden">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-14">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/40 text-cyan-300 border border-cyan-800/40 text-xs font-semibold uppercase tracking-wider mb-3">
+            <LayersIcon size={14} />
+            <span>Interactive Skill Constellation</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            Core Skill Set
+            Technical Architecture Map
           </h2>
-          <p className="text-neutral-400 text-sm sm:text-base mt-2 max-w-2xl">
-            A comprehensive overview of languages, frameworks, search pipelines, and cloud tooling utilized in daily production engineering.
+          <p className="text-neutral-400 text-sm sm:text-base mt-2 max-w-xl mx-auto">
+            Tap on any domain node to expand or collapse its connected constellation of production technologies.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {skillCategories.map((category) => (
-            <div
-              key={category.title}
-              className="bg-neutral-900/40 border border-neutral-800 hover:border-neutral-700/80 rounded-2xl p-6 sm:p-7 backdrop-blur-sm transition-all flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-lg font-bold text-white">
-                    {category.title}
-                  </h3>
-                  <span className="text-xs font-mono text-neutral-400">
-                    {category.skills.length} Technologies
-                  </span>
-                </div>
-                <p className="text-xs text-neutral-400 mb-6 leading-relaxed">
-                  {category.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2.5">
-                  {category.skills.map((skill) => (
-                    <div
-                      key={skill.name}
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium border transition-all ${
-                        skill.highlight
-                          ? "bg-cyan-950/40 border-cyan-800/60 text-cyan-200 hover:bg-cyan-900/40"
-                          : "bg-neutral-900/90 border-neutral-800 text-neutral-300 hover:border-neutral-700"
-                      }`}
-                    >
-                      {skill.highlight && (
-                        <SparklesIcon size={12} className="text-cyan-400 shrink-0" />
-                      )}
-                      <span>{skill.name}</span>
+        <div className="relative min-h-[580px] p-6 sm:p-12 rounded-3xl bg-neutral-950/90 border border-neutral-800/80 bg-grid-pattern shadow-2xl flex flex-col justify-between items-center overflow-hidden">
+          
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 z-10 mb-6">
+            {skillClusters.slice(0, 2).map((cluster) => {
+              const isOpen = expanded[cluster.id];
+              return (
+                <div key={cluster.id} className="flex flex-col items-center">
+                  {isOpen && (
+                    <div className="flex flex-wrap justify-center gap-2 mb-4 max-w-md animate-in fade-in zoom-in-95 duration-200">
+                      {cluster.skills.map((skill) => (
+                        <span
+                          key={skill.name}
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium border ${cluster.color.bg} ${cluster.color.border} ${cluster.color.text} shadow-sm backdrop-blur-md transition-all hover:scale-105`}
+                        >
+                          {skill.highlight && (
+                            <SparklesIcon size={11} className="shrink-0" />
+                          )}
+                          <span>{skill.name}</span>
+                        </span>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              </div>
+                  )}
 
-              <div className="mt-6 pt-4 border-t border-neutral-800/60 flex items-center justify-between text-[11px] text-neutral-400">
-                <span className="flex items-center gap-1">
-                  <CheckCircleIcon size={12} className="text-emerald-400" />
-                  Production Tested
+                  <button
+                    onClick={() => toggleCluster(cluster.id)}
+                    className={`group flex items-center gap-3 px-5 py-2.5 rounded-2xl border transition-all duration-300 cursor-pointer shadow-lg backdrop-blur-xl ${
+                      isOpen
+                        ? `${cluster.color.border} ${cluster.color.bg} ring-2 ring-cyan-500/20 shadow-cyan-500/10`
+                        : "border-neutral-800 bg-neutral-900/90 hover:border-neutral-700"
+                    }`}
+                  >
+                    <span className={`flex h-2.5 w-2.5 rounded-full ${cluster.color.dot} shadow-sm`} />
+                    <span className="text-xs sm:text-sm font-bold tracking-wider text-white">
+                      {cluster.label}
+                    </span>
+                    <span className="px-2 py-0.5 rounded-md text-[10px] font-mono bg-neutral-800 text-neutral-300">
+                      {cluster.skills.length}
+                    </span>
+                    <span className="text-xs text-neutral-400">
+                      {isOpen ? "▲" : "▼"}
+                    </span>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="relative my-8 z-20">
+            <div className="absolute -inset-1.5 rounded-full bg-gradient-to-r from-amber-500/30 via-cyan-500/30 to-purple-500/30 blur-md animate-pulse" />
+            <div className="relative flex items-center gap-3 px-7 py-3 rounded-full bg-neutral-900 border-2 border-amber-500/80 shadow-2xl shadow-amber-500/20 text-white">
+              <span className="h-3 w-3 rounded-full bg-amber-400 shadow-md shadow-amber-400/50 animate-ping" />
+              <div className="text-center">
+                <span className="text-[10px] uppercase tracking-widest font-bold text-amber-400 block font-mono">
+                  CORE HUB
                 </span>
-                <span>Active Stack</span>
+                <span className="text-xs sm:text-sm font-extrabold tracking-wide">
+                  LEELAKUMAR KAKINADA
+                </span>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
 
-        <div className="mt-12 p-6 rounded-2xl bg-neutral-900/30 border border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-          <div>
-            <h4 className="text-sm font-semibold text-white">
-              Specialized in High-Concurrency &amp; Low-Latency Delivery
-            </h4>
-            <p className="text-xs text-neutral-400 mt-1">
-              From building mobile apps in React Native to low-latency Elasticsearch vector queries and GraphQL services.
-            </p>
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 z-10 mt-6">
+            {skillClusters.slice(2, 4).map((cluster) => {
+              const isOpen = expanded[cluster.id];
+              return (
+                <div key={cluster.id} className="flex flex-col items-center">
+                  <button
+                    onClick={() => toggleCluster(cluster.id)}
+                    className={`group flex items-center gap-3 px-5 py-2.5 rounded-2xl border transition-all duration-300 cursor-pointer shadow-lg backdrop-blur-xl mb-4 ${
+                      isOpen
+                        ? `${cluster.color.border} ${cluster.color.bg} ring-2 ring-purple-500/20 shadow-purple-500/10`
+                        : "border-neutral-800 bg-neutral-900/90 hover:border-neutral-700"
+                    }`}
+                  >
+                    <span className={`flex h-2.5 w-2.5 rounded-full ${cluster.color.dot} shadow-sm`} />
+                    <span className="text-xs sm:text-sm font-bold tracking-wider text-white">
+                      {cluster.label}
+                    </span>
+                    <span className="px-2 py-0.5 rounded-md text-[10px] font-mono bg-neutral-800 text-neutral-300">
+                      {cluster.skills.length}
+                    </span>
+                    <span className="text-xs text-neutral-400">
+                      {isOpen ? "▲" : "▼"}
+                    </span>
+                  </button>
+
+                  {isOpen && (
+                    <div className="flex flex-wrap justify-center gap-2 max-w-md animate-in fade-in zoom-in-95 duration-200">
+                      {cluster.skills.map((skill) => (
+                        <span
+                          key={skill.name}
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium border ${cluster.color.bg} ${cluster.color.border} ${cluster.color.text} shadow-sm backdrop-blur-md transition-all hover:scale-105`}
+                        >
+                          {skill.highlight && (
+                            <SparklesIcon size={11} className="shrink-0" />
+                          )}
+                          <span>{skill.name}</span>
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
-          <div className="flex items-center gap-2">
-            <span className="px-3 py-1 text-xs font-mono rounded-lg bg-neutral-950 text-cyan-400 border border-neutral-800">
-              TS / JS
-            </span>
-            <span className="px-3 py-1 text-xs font-mono rounded-lg bg-neutral-950 text-indigo-400 border border-neutral-800">
-              Next.js
-            </span>
-            <span className="px-3 py-1 text-xs font-mono rounded-lg bg-neutral-950 text-emerald-400 border border-neutral-800">
-              Node.js
-            </span>
-            <span className="px-3 py-1 text-xs font-mono rounded-lg bg-neutral-950 text-purple-400 border border-neutral-800">
-              Python
-            </span>
-          </div>
+
+          <svg className="absolute inset-0 w-full h-full pointer-events-none stroke-neutral-800/80">
+            <line x1="25%" y1="22%" x2="50%" y2="50%" strokeDasharray="4 6" strokeWidth="1.5" />
+            <line x1="75%" y1="22%" x2="50%" y2="50%" strokeDasharray="4 6" strokeWidth="1.5" />
+            <line x1="25%" y1="78%" x2="50%" y2="50%" strokeDasharray="4 6" strokeWidth="1.5" />
+            <line x1="75%" y1="78%" x2="50%" y2="50%" strokeDasharray="4 6" strokeWidth="1.5" />
+          </svg>
         </div>
       </div>
     </section>
   );
 }
-

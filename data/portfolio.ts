@@ -3,6 +3,7 @@ import {
   ExperienceCompany,
   PortfolioProfile,
   SkillCategory,
+  SkillCluster,
 } from "@/types/portfolio";
 
 export const profileData: PortfolioProfile = {
@@ -189,4 +190,81 @@ export const skillCategories: SkillCategory[] = [
     ],
   },
 ];
+
+export const skillClusters: SkillCluster[] = [
+  {
+    id: "frontend",
+    label: "FRONTEND",
+    color: {
+      border: "border-cyan-500/60",
+      bg: "bg-cyan-950/40",
+      text: "text-cyan-300",
+      glow: "shadow-cyan-500/20",
+      dot: "bg-cyan-400",
+    },
+    skills: [
+      { name: "React JS", highlight: true },
+      { name: "Next.js", highlight: true },
+      { name: "React Native", highlight: true },
+      { name: "TypeScript", highlight: true },
+      { name: "JavaScript" },
+      { name: "Tailwind CSS" },
+      { name: "HTML5 / CSS3" },
+    ],
+  },
+  {
+    id: "backend",
+    label: "BACKEND",
+    color: {
+      border: "border-emerald-500/60",
+      bg: "bg-emerald-950/40",
+      text: "text-emerald-300",
+      glow: "shadow-emerald-500/20",
+      dot: "bg-emerald-400",
+    },
+    skills: [
+      { name: "Node.js", highlight: true },
+      { name: "GraphQL", highlight: true },
+      { name: "REST APIs" },
+      { name: "Microservices" },
+      { name: "Python", highlight: true },
+    ],
+  },
+  {
+    id: "search",
+    label: "SEARCH & DATA",
+    color: {
+      border: "border-purple-500/60",
+      bg: "bg-purple-950/40",
+      text: "text-purple-300",
+      glow: "shadow-purple-500/20",
+      dot: "bg-purple-400",
+    },
+    skills: [
+      { name: "Elasticsearch", highlight: true },
+      { name: "k-NN Vector Search", highlight: true },
+      { name: "SQL", highlight: true },
+      { name: "Data Pipelines" },
+    ],
+  },
+  {
+    id: "cloud",
+    label: "CLOUD & SRE",
+    color: {
+      border: "border-amber-500/60",
+      bg: "bg-amber-950/40",
+      text: "text-amber-300",
+      glow: "shadow-amber-500/20",
+      dot: "bg-amber-400",
+    },
+    skills: [
+      { name: "AWS Amplify", highlight: true },
+      { name: "CI/CD Pipelines", highlight: true },
+      { name: "SRE Practices", highlight: true },
+      { name: "Observability" },
+      { name: "Apache JMeter" },
+    ],
+  },
+];
+
 

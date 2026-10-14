@@ -8,7 +8,7 @@ import { CheckIcon } from "../ui/icons/CheckIcon";
 import { CopyIcon } from "../ui/icons/CopyIcon";
 import { DownloadIcon } from "../ui/icons/DownloadIcon";
 import { FileTextIcon } from "../ui/icons/FileTextIcon";
-import { GithubIcon } from "../ui/icons/GithubIcon";
+// import { GithubIcon } from "../ui/icons/GithubIcon";
 import { LinkedinIcon } from "../ui/icons/LinkedinIcon";
 import { MailIcon } from "../ui/icons/MailIcon";
 import { PhoneIcon } from "../ui/icons/PhoneIcon";
@@ -200,7 +200,7 @@ export function Contact() {
                   </span>
                 </a>
 
-                <a
+                {/* <a
                   href={profileData.socials.github}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -213,7 +213,7 @@ export function Contact() {
                   <span className="text-[11px] text-neutral-400 group-hover:text-cyan-400 transition-colors">
                     Explore →
                   </span>
-                </a>
+                </a> */}
               </div>
             </div>
           </div>

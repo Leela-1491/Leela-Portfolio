@@ -42,7 +42,7 @@ leela-portfolio/
 │   ├── sections/               # The 4 Core Sections
 │   │   ├── Hero.tsx            # [Server Component] About Me, ATS Tags, Impact Metrics
 │   │   ├── Experience.tsx      # [Server Component] Career Timeline (QA -> SDE I -> SDE II)
-│   │   ├── Skills.tsx          # [Server Component] 4-Category Technical Matrix
+│   │   ├── Skills.tsx          # [Client Component] Interactive Constellation Mind-Map
 │   │   └── Contact.tsx         # [Client Component] Message Form, Phone & Email Hub
 │   │
 │   └── ui/                     # UI Primitives
@@ -74,7 +74,7 @@ leela-portfolio/
 | `app/page.tsx` | **Server** | Root page shell & layout assembly | 0 KB |
 | `Hero.tsx` | **Server** | Pre-rendered bio, stats, ATS tags | 0 KB |
 | `Experience.tsx` | **Server** | Pre-rendered career & education timeline | 0 KB |
-| `Skills.tsx` | **Server** | Pre-rendered skill categories & badges | 0 KB |
+| `Skills.tsx` | **Client** | Interactive constellation mind-map & cluster toggling | Minimal |
 | `Footer.tsx` | **Server** | Static footer markup | 0 KB |
 | `Navbar.tsx` | **Client** | Active section tracking & mobile menu | Minimal |
 | `Contact.tsx` | **Client** | Interactive message form & copy buttons | Minimal |
@@ -100,12 +100,14 @@ leela-portfolio/
   - JMeter performance testing and bottleneck analysis.
 - **Education**: Bachelor of Technology in Electronics & Communication Engineering from **Andhra University College of Engineering** (Final CGPA: **8.74** / High Distinction).
 
-### 3. Skill Set (`#skills`)
-- Grouped into 4 technical domains:
-  1. **Frontend & Mobile**: React JS, Next.js (App Router), React Native, TypeScript, TailwindCSS.
-  2. **Backend & Search**: Node.js, GraphQL APIs, RESTful APIs, Elasticsearch, k-NN Vector Search.
-  3. **Data & Scripting**: SQL, Python, Catalog Pipelines, Data Modeling.
-  4. **Cloud & DevOps**: AWS Amplify, CI/CD Pipelines, SRE Practices, JMeter, Git.
+### 3. Interactive Skill Constellation (`#skills`)
+- **Mind-Map Graph Architecture**: Features a central glowing `CORE HUB: LEELAKUMAR KAKINADA` connected to domain nodes via SVG constellation lines.
+- **Interactive Tap-to-Expand Clusters**:
+  1. **`FRONTEND` (7 Techs)**: React JS, Next.js, React Native, TypeScript, Tailwind CSS, HTML5/CSS3.
+  2. **`BACKEND` (5 Techs)**: Node.js, GraphQL APIs, RESTful APIs, Microservices, Python.
+  3. **`SEARCH & DATA` (4 Techs)**: Elasticsearch, k-NN Vector Search, SQL, Data Pipelines.
+  4. **`CLOUD & SRE` (5 Techs)**: AWS Amplify, CI/CD Pipelines, SRE Practices, Observability, Apache JMeter.
+- **Decoupled Architecture**: Fully customizable via `skillClusters` in `data/portfolio.ts`.
 
 ### 4. Contact Us & Resume Hub (`#contact`)
 - **Direct Phone / WhatsApp**: `+91 9676953491` with 1-click clipboard copy and `tel:` dialer.

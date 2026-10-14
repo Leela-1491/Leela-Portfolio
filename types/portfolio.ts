@@ -56,3 +56,21 @@ export interface PortfolioProfile {
   resumeUrl: string;
 }
 
+export interface SkillClusterNode {
+  name: string;
+  highlight?: boolean;
+}
+
+export interface SkillCluster {
+  id: string;
+  label: string;
+  color: {
+    border: string;
+    bg: string;
+    text: string;
+    glow: string;
+    dot: string;
+  };
+  skills: SkillClusterNode[];
+}
+
