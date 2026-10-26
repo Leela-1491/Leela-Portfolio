@@ -1,5 +1,4 @@
 import { SparklesIcon } from "@/components/ui/icons";
-
 import { profileData } from "@/data/portfolio";
 
 export function Hero() {
@@ -26,7 +25,7 @@ export function Hero() {
         </h1>
 
         <p className="text-lg sm:text-xl font-medium text-neutral-300 mb-6 max-w-3xl">
-          Software Development Engineer building high-performance web, mobile, and backend microservices.
+          Software Development Engineer specializing in responsive user interfaces, scalable frontend architecture, and performance optimization across web and mobile applications.
         </p>
 
         <div className="bg-neutral-900/40 border border-neutral-800/80 rounded-2xl p-5 sm:p-6 mb-8 backdrop-blur-sm">
